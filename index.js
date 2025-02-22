@@ -10,17 +10,9 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to database'))
-  .catch(err => console.error('Error connecting to database', err));
-
-// User schema
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
-});
-
+  .catch(err => console.error('Error connecting to database', err));qw3wq
 const User = mongoose.model('User', userSchema);
 
 // POST API endpoint
