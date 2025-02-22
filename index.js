@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const User = require('./schema');
 require('dotenv').config();
 
 const app = express();
@@ -10,10 +11,10 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI , { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to database'))
-  .catch(err => console.error('Error connecting to database', err));qw3wq
-const User = mongoose.model('User', userSchema);
+  .catch(err => console.error('Error connecting to database', err));
+  
 
 // POST API endpoint
 app.post('/api/users', async (req, res) => {
